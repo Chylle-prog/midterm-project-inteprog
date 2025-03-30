@@ -67,6 +67,15 @@ void toUpperCase(string &str) {
     }
 }
 
+bool isOnlySpace(const string &s) {
+    for (char c : s) {
+        if (c != ' ') {
+            return false;
+        }
+    }
+    return true;
+}
+
 class Library {
 private:
     Book** books;
@@ -241,6 +250,7 @@ class AddBook {
 private:
     string tempCategory, tempID, tempISBN, tempTitle, tempAuthor, tempEdition, tempPublication;
     bool loop = true;
+    
 public:
     void addBookInfo(Library &myLibrary) { 
         while (loop) {
@@ -259,7 +269,7 @@ public:
             getline(cin, tempID);
             toUpperCase(tempID);
         
-            if (tempID.empty()) {
+            if (tempID.empty() || isOnlySpace(tempID)) {
                 cout << "Invalid Entry!\n\n";
                 toUpperCase(tempID);
                 continue;  
@@ -299,28 +309,28 @@ public:
         while(loop){
             cout << "Input Title: ";
             getline(cin, tempTitle);
-            if(!tempTitle.empty()) { break; }
+            if(!tempTitle.empty() && !isOnlySpace(tempTitle)) { break; }
             cout << "Invalid Entry!\n\n";
         }
         
         while(loop){
             cout << "Input Author: ";
             getline(cin, tempAuthor);
-            if(!tempAuthor.empty()) { break; }
+            if(!tempAuthor.empty() && !isOnlySpace(tempAuthor)) { break; }
             cout << "Invalid Entry!\n\n";
         }
         
         while(loop){
             cout << "Input Edition: ";
             getline(cin, tempEdition);
-            if(!tempEdition.empty()) { break; }
+            if(!tempEdition.empty() && !isOnlySpace(tempEdition)) { break; }
             cout << "Invalid Entry!\n\n";
         }
         
         while(loop){
             cout << "Input Publication: ";
             getline(cin, tempPublication);
-            if(!tempPublication.empty()) { break; }
+            if(!tempPublication.empty() && !isOnlySpace(tempPublication)) { break; }
             cout << "Invalid Entry!\n\n";
         }
 
@@ -375,7 +385,7 @@ public:
         while (loop) {
             cout << "Enter new Title: ";
             getline(cin, tempTitle);
-            if (!tempTitle.empty()) {
+            if (!tempTitle.empty() && !isOnlySpace(tempTitle)) {
                 book->setTitle(tempTitle);
                 break;
             }
@@ -385,7 +395,7 @@ public:
         while (loop) {
             cout << "Enter new Author: ";
             getline(cin, tempAuthor);
-            if (!tempAuthor.empty()) {
+            if ((!tempAuthor.empty()) && !isOnlySpace(tempAuthor)) {
                 book->setAuthor(tempAuthor);
                 break;
             }
@@ -395,7 +405,7 @@ public:
         while (loop) {
             cout << "Enter new Edition: ";
             getline(cin, tempEdition);
-            if (!tempEdition.empty()) {
+            if (!tempEdition.empty()  && !isOnlySpace(tempEdition)) {
                 book->setEdition(tempEdition);
                 break;
             }
@@ -405,7 +415,7 @@ public:
         while (loop) {
             cout << "Enter new Publication: ";
             getline(cin, tempPublication);
-            if (!tempPublication.empty()) {
+            if (!tempPublication.empty() && !isOnlySpace(tempPublication)) {
                 book->setPublication(tempPublication);
                 break;
             }
@@ -416,7 +426,7 @@ public:
             cout << "Enter new Category: ";
             getline(cin, tempCategory);
             toUpperCase(tempCategory);
-            if (!tempCategory.empty() && (tempCategory == "FICTION" || tempCategory == "NON-FICTION")) {
+            if (tempCategory == "FICTION" || tempCategory == "NON-FICTION") {
                 book->setCategory(tempCategory);
                 break;
             }
