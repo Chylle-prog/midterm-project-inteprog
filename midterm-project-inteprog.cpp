@@ -540,13 +540,12 @@ public:
             int bookCount = myLibrary.getCount();
             Book** books = myLibrary.getBook();
 
-            // Collect all matching books
-            Book* matchingBooks[100]; // Assuming a max of 100 books in a category
+            Book* matchingBooks[100]; 
             int count = 0;
 
             for (int i = 0; i < bookCount; i++) {
                 if (books[i]->getCategory() == tempCategory) {
-                    matchingBooks[count++] = books[i]; // Store book and increment count
+                    matchingBooks[count++] = books[i]; 
                 }
             }
 
@@ -555,7 +554,6 @@ public:
                 continue;
             }
 
-            // Display all matching books
             cout << "\nBooks Found:\n";
             myLibrary.displayBooks(matchingBooks, count);
 
